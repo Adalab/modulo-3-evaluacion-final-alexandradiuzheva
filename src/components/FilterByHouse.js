@@ -1,5 +1,8 @@
+import PropTypes from 'prop-types';
+
 function filterByHouse(props) {
   const handleChange = (ev) => {
+    ev.preventDefault();
     props.handleFilter({
       key: 'house',
       value: ev.target.value,
@@ -25,5 +28,11 @@ function filterByHouse(props) {
     </>
   );
 }
+
+filterByHouse.propTypes = {
+  houses: PropTypes.array.isRequired,
+  filterByHouse: PropTypes.string.isRequired,
+  handleFilter: PropTypes.func.isRequired,
+};
 
 export default filterByHouse;

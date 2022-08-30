@@ -22,7 +22,7 @@ function CharacterDetail(props) {
             />
           </section>
           <section className="detailText">
-            <h4 classname="detailTextName">{props.character.name}</h4>
+            <h4 className="detailTextName">{props.character.name}</h4>
             <p>Especie: {props.character.species}</p>
             <p>
               Genero: {props.character.gender === 'female' ? 'Mujer' : 'Hombre'}
