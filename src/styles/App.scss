@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to top right, white, dimgrey);
+  color: rgb(112, 3, 3);
+}
+
+.title {
+  text-align: center;
+  font-size: 70px;
+  font-family: 'Indie Flower', cursive;
+  padding: 15px;
+  text-shadow: 2px 2px #00155b;
+}
+
+.filterText {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+.characterList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-self: center;
+  justify-items: center;
+  padding: 20px;
+  gap: 20px;
+  list-style: none;
+  margin: 2rem 0rem 2rem 0rem;
+}
+
+.characterListWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.characterImage {
+  width: 12rem;
+  height: 16rem;
+  margin-bottom: 0.5rem;
+}
+
+.characterList li a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+.characterList li {
+  border: solid 5px rgb(112, 3, 3);
+  border-radius: 5px;
+  background-color: rgb(112, 3, 3);
+}
+
+.characterName {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px #00155b;
+}
+
+.characterSpecie {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1rem;
+  color: white;
+  text-shadow: 1px 1px #00155b;
+}
+
+.filterForm {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 20rem;
+  margin-top: 2rem;
+}
+
+.filterForm label {
+  margin-bottom: 0.5rem;
+}
+
+.filterForm input {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: solid 5px rgb(112, 3, 3);
+  border-radius: 5px;
+}
+
+.filterForm select {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: solid 5px rgb(112, 3, 3);
+  border-radius: 5px;
+}
+
+.resetBtn {
+  background-color: rgb(112, 3, 3);
+  color: white;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.resetWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.btnBack {
+  text-decoration: none;
+  background-color: rgb(112, 3, 3);
+  color: white;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border-style: outset;
+  width: 10rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btnBackWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.detailWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailCardWrap {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  background-color: rgb(112, 3, 3);
+}
+
+.detailTitle {
+  margin: 2rem 0 2rem 0;
+}
+
+.detailImage {
+  margin: 1rem;
+}
+
+.detailText {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+.detailText p {
+  font-size: 1.2rem;
+}
+.detailText h4 {
+  font-size: 1.8rem;
+  font-family: 'Indie Flower', cursive;
+  padding-bottom: 1rem;
+}
