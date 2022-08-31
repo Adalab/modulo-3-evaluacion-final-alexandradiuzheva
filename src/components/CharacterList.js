@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 import CharacterCard from './CharacterCard';
 
 function CharacterList(props) {
@@ -11,7 +10,11 @@ function CharacterList(props) {
     );
   });
 
-  return (
+  return characterElements.length === 0 ? (
+    <p className="message">
+      No hay ningún personaje que coincida con la palabra introducida
+    </p>
+  ) : (
     <section className="characterListWrap">
       <ul className="characterList">{characterElements}</ul>
     </section>
@@ -19,14 +22,13 @@ function CharacterList(props) {
 }
 
 CharacterList.defaultProps = {
-  filterbyHouse: 'Gryffindor',
   filterbyName: '',
+  filterbyHouse: 'all',
+  filterByGender: 'all',
 };
 
 CharacterList.propTypes = {
   dataCharacters: PropTypes.array.isRequired,
-  filterByHouse: PropTypes.string.isRequired,
-  filterByName: PropTypes.string.isRequired,
 };
 
 export default CharacterList;

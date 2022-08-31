@@ -4,16 +4,20 @@ import { useState, useEffect } from 'react';
 import CharacterList from './CharacterList';
 import Filters from './Filters';
 import CharacterDetail from './CharacterDetail';
-import { Route, Routes } from 'react-router';
-import { matchPath, useLocation } from 'react-router';
+import { matchPath, Route, Routes, useLocation } from 'react-router-dom';
+import ls from '../services/localStorage';
 
 function App() {
-  /*Render characters*/
-  const [dataCharacters, setDataCharacters] = useState([]);
-
-  /*Filter characters*/
-  const [filterByName, setFilterByName] = useState('');
-  const [filterByHouse, setFilterByHouse] = useState('Gryffindor');
+  const [dataCharacters, setDataCharacters] = useState(
+    ls.get('dataCharacters', [])
+  );
+  const [filterByName, setFilterByName] = useState(ls.get('filterByName', ''));
+  const [filterByHouse, setFilterByHouse] = useState(
+    ls.get('filterByHouse', 'all')
+  );
+  const [filterByGender, setFilterByGender] = useState(
+    ls.get('filterByGender', 'all')
+  );
 
   useEffect(() => {
     getDataApi().then((dataFromApi) => {
@@ -21,11 +25,20 @@ function App() {
     });
   }, []);
 
-  const handleFilter = (data) => {
-    if (data.key === 'name') {
-      setFilterByName(data.value);
-    } else if (data.key === 'house') {
-      setFilterByHouse(data.value);
+  useEffect(() => {
+    ls.set('dataCharacters', dataCharacters);
+    ls.set('filterByName', filterByName);
+    ls.set('filterByHouse', filterByHouse);
+    ls.set('filterByGender', filterByGender);
+  }, [dataCharacters, filterByName, filterByHouse, filterByGender]);
+
+  const handleFilter = (dataFromApi) => {
+    if (dataFromApi.key === 'name') {
+      setFilterByName(dataFromApi.value);
+    } else if (dataFromApi.key === 'house') {
+      setFilterByHouse(dataFromApi.value);
+    } else if (dataFromApi.key === 'gender') {
+      setFilterByGender(dataFromApi.value);
     }
   };
 
@@ -35,20 +48,27 @@ function App() {
         .toLowerCase()
         .includes(filterByName.toLowerCase());
     })
-    .filter((dataCharacters) => {
-      return dataCharacters.house.includes(filterByHouse);
-    });
+    .filter((eachCharacter) =>
+      filterByHouse === 'all'
+        ? eachCharacter.house
+        : filterByHouse === eachCharacter.house
+    )
+    .filter((eachCharacter) =>
+      filterByGender === 'all'
+        ? eachCharacter.gender
+        : filterByGender === eachCharacter.gender
+    );
 
   const handleDelete = (ev) => {
     ev.preventDefault();
     setFilterByName('');
-    setFilterByHouse('Gryffindor');
+    setFilterByHouse('all');
+    setFilterByGender('all');
   };
 
   const { pathname } = useLocation();
   const dataPath = matchPath('/character/:id', pathname);
   const characterId = dataPath !== null ? dataPath.params.id : null;
-  console.log(characterId);
   const characterFound = dataCharacters.find(
     (character) => character.id === parseInt(characterId)
   );
@@ -66,6 +86,7 @@ function App() {
                 dataCharacters={dataCharacters}
                 filterByName={filterByName}
                 filterByHouse={filterByHouse}
+                filterByGender={filterByGender}
                 handleFilter={handleFilter}
               />
               <div className="resetWrap">

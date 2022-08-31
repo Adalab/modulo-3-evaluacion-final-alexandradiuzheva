@@ -24,13 +24,13 @@ function filterByHouse(props) {
         <option value="Hufflepuff">Hufflepuff</option>
         <option value="Ravenclaw">Ravenclaw</option>
         <option value="Slytherin">Slytherin</option>
+        <option value="all">Todas</option>
       </select>
     </>
   );
 }
 
 filterByHouse.propTypes = {
-  houses: PropTypes.array.isRequired,
   filterByHouse: PropTypes.string.isRequired,
   handleFilter: PropTypes.func.isRequired,
 };
