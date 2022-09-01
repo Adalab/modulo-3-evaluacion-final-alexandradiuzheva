@@ -1,6 +1,7 @@
 import FilterByName from './FilterByName';
 import FilterByHouse from './FilterByHouse';
 import FilterByGender from './FilterByGender';
+import FilterByAN from './FilterByAN';
 
 function Filters(props) {
   const handleForm = (ev) => {
@@ -20,6 +21,10 @@ function Filters(props) {
       <FilterByGender
         handleFilter={props.handleFilter}
         filterByGender={props.filterByGender}
+      />
+      <FilterByAN
+        handleFilter={props.handleFilter}
+        filterByAN={props.filterByAN}
       />
     </form>
   );

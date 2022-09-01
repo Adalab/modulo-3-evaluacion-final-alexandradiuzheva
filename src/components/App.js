@@ -18,6 +18,7 @@ function App() {
   const [filterByGender, setFilterByGender] = useState(
     ls.get('filterByGender', 'all')
   );
+  const [filterByAN, setFilterByAN] = useState(0);
 
   useEffect(() => {
     getDataApi().then((dataFromApi) => {
@@ -39,6 +40,8 @@ function App() {
       setFilterByHouse(dataFromApi.value);
     } else if (dataFromApi.key === 'gender') {
       setFilterByGender(dataFromApi.value);
+    } else if (dataFromApi.key === 'number') {
+      setFilterByAN(dataFromApi.value);
     }
   };
 
@@ -57,7 +60,10 @@ function App() {
       filterByGender === 'all'
         ? eachCharacter.gender
         : filterByGender === eachCharacter.gender
-    );
+    )
+    .filter((dataCharacters) => {
+      return dataCharacters.alternate_names.length === parseInt(filterByAN);
+    });
 
   const handleDelete = (ev) => {
     ev.preventDefault();
