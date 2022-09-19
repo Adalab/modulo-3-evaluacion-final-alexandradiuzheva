@@ -70,6 +70,7 @@ function App() {
     setFilterByName('');
     setFilterByHouse('all');
     setFilterByGender('all');
+    setFilterByAN(0);
   };
 
   const { pathname } = useLocation();
@@ -93,6 +94,7 @@ function App() {
                 filterByName={filterByName}
                 filterByHouse={filterByHouse}
                 filterByGender={filterByGender}
+                filterByAN={filterByAN}
                 handleFilter={handleFilter}
               />
               <div className="resetWrap">
